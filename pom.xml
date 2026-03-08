@@ -10,6 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>client-common</module>
 		<module>domain</module>
 		<module>api</module>
 		<module>app</module>

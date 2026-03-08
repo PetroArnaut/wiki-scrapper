@@ -3,7 +3,5 @@ package com.lastminute.recruitment.persistence;
 import com.lastminute.recruitment.domain.WikiPage;
 
 public class WikiPageRepository {
-    public void save(WikiPage wikiPage) {
-        System.out.println(wikiPage.selfLink());
-    }
+    public void save(WikiPage wikiPage) {}
 }
