@@ -1,0 +1,9 @@
+{
+  "title": "Site 2",
+  "content": "Content 2",
+  "selfLink": "http://wikiscrapper.test/site2",
+  "links": [
+    "http://wikiscrapper.test/site4",
+    "http://wikiscrapper.test/site5"
+  ]
+}
