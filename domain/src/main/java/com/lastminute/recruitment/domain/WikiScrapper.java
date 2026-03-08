@@ -39,7 +39,7 @@ public class WikiScrapper {
             if (wikiPage == null) {
                 throw new WikiPageNotFound("Reader returned no page for: " + currentLinkToVisit);
             }
-            String pageSelfLink = normalize(wikiPage.getSelfLink());
+            String pageSelfLink = normalize(wikiPage.selfLink());
             if (pageSelfLink == null || pageSelfLink.isBlank()) {
                 throw new WikiPageNotFound("Invalid page with empty selfLink: " + currentLinkToVisit);
             }
@@ -49,7 +49,7 @@ public class WikiScrapper {
             }
 
             wikiPageConsumer.accept(wikiPage);
-            for (String linkToVisit : wikiPage.getLinks()) {
+            for (String linkToVisit : wikiPage.links()) {
                 String normalizedLink = normalize(linkToVisit);
                 if (normalizedLink != null && !normalizedLink.isBlank() && scheduledLinks.add(normalizedLink)) {
                     linksToVisit.add(normalizedLink);

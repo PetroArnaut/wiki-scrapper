@@ -1,5 +1,6 @@
 package com.lastminute.recruitment;
 
+import com.lastminute.recruitment.client.HtmlWikiClient;
 import com.lastminute.recruitment.client.JsonWikiClient;
 import com.lastminute.recruitment.domain.WikiPageReader;
 import com.lastminute.recruitment.domain.WikiScrapper;
@@ -12,9 +13,15 @@ import org.springframework.context.annotation.Profile;
 public class WikiScrapperConfiguration {
 
     @Bean
-    @Profile("json")
-    public JsonWikiClient jsonWikiReader() {
+    @Profile("json & !html")
+    public WikiPageReader jsonWikiReader() {
         return new JsonWikiClient();
+    }
+
+    @Bean
+    @Profile("html & !json")
+    public WikiPageReader htmlWikiReader() {
+        return new HtmlWikiClient();
     }
 
     @Bean

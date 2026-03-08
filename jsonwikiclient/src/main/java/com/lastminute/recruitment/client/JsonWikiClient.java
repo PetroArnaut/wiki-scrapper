@@ -19,7 +19,7 @@ public class JsonWikiClient implements WikiPageReader {
 
     @Override
     public WikiPage read(String link) {
-        String pageId = parsePageId(link);
+        String pageId = ParseUtils.parsePageId(link);
         String resource = RESOURCE_PREFIX + pageId + RESOURCE_EXTENSION;
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(resource)) {
             if (inputStream == null) {
@@ -30,17 +30,5 @@ public class JsonWikiClient implements WikiPageReader {
         } catch (IOException e) {
             throw new WikiPageParseException("Invalid JSON for: " + link, e);
         }
-    }
-
-    private String parsePageId(String link) {
-        if (link == null || link.isBlank()) {
-            throw new WikiPageNotFound("Null link provided");
-        }
-        String normalized = link.strip().replaceAll("/+$", "");
-        int slashIndex = normalized.lastIndexOf('/');
-        if (slashIndex < 0) {
-            throw new WikiPageNotFound("Invalid wiki link: " + link);
-        }
-        return normalized.substring(slashIndex + 1);
     }
 }

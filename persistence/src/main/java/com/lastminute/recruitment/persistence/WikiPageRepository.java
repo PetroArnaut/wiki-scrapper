@@ -4,6 +4,6 @@ import com.lastminute.recruitment.domain.WikiPage;
 
 public class WikiPageRepository {
     public void save(WikiPage wikiPage) {
-        System.out.println(wikiPage.getSelfLink());
+        System.out.println(wikiPage.selfLink());
     }
 }

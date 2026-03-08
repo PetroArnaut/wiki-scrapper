@@ -1,34 +1,16 @@
 package com.lastminute.recruitment.domain;
 
 import java.util.List;
+import java.util.Objects;
 
-public class WikiPage {
-
-    private final String title;
-    private final String content;
-    private final String selfLink;
-    private final List<String> links;
-
-    public WikiPage(String title, String content, String selfLink, List<String> links) {
-        this.title = title;
-        this.content = content;
-        this.selfLink = selfLink;
-        this.links = links;
-    }
-
-    public List<String> getLinks() {
-        return links;
-    }
-
-    public String getSelfLink() {
-        return selfLink;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
+public record WikiPage(String title, String content, String selfLink, List<String> links) {
+    public WikiPage {
+        title = Objects.requireNonNull(title, "title must not be null").strip();
+        content = Objects.requireNonNull(content, "content must not be null").strip();
+        selfLink = Objects.requireNonNull(selfLink, "selfLink must not be null").strip();
+        if (selfLink.isBlank()) {
+            throw new IllegalArgumentException("selfLink must not be blank");
+        }
+        links = links == null ? List.of() : List.copyOf(links);
     }
 }

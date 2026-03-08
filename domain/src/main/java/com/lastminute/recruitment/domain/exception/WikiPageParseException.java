@@ -4,4 +4,8 @@ public class WikiPageParseException extends RuntimeException {
     public WikiPageParseException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public WikiPageParseException(String message) {
+        super(message);
+    }
 }
